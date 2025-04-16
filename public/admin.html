@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Usuarios</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="home-hero">
+      <h1>Usuarios Registrados</h1>
+      <table id="usersTable" border="1" style="margin: auto; background: #1e2137; color: white; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th>Usuario</th>
+          </tr>
+        </thead>
+        <tbody id="usersBody">
+          <!-- Aquí se llenarán los usuarios -->
+        </tbody>
+      </table>
+      <div style="margin-top: 20px;">
+        <a href="index.html" class="main-btn">Volver</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    fetch('/usuarios')
+      .then(res => res.json())
+      .then(data => {
+        const body = document.getElementById('usersBody');
+        data.forEach(user => {
+          const row = document.createElement('tr');
+          const cell = document.createElement('td');
+          cell.textContent = user.username;
+          row.appendChild(cell);
+          body.appendChild(row);
+        });
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin - Usuarios</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="main-content">
+    <div class="home-hero">
+      <h1>Usuarios Registrados</h1>
+      <table id="usersTable" border="1" style="margin: auto; background: #1e2137; color: white; border-collapse: collapse;">
+        <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          
+        <tbody id="usersBody">
+          <!-- Aquí se llenarán los usuarios -->
+        </tbody>
+      </table>
+      <div style="margin-top: 20px;">
+        <a href="index.html" class="main-btn">Volver</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    function cargarUsuarios() {
+      fetch('/usuarios')
+        .then(res => res.json())
+        .then(data => {
+          const body = document.getElementById('usersBody');
+          body.innerHTML = ''; // limpiar tabla
+  
+          data.forEach(user => {
+            const row = document.createElement('tr');
+  
+            const cellUsername = document.createElement('td');
+            cellUsername.textContent = user.username;
+            row.appendChild(cellUsername);
+  
+            const cellDelete = document.createElement('td');
+            const btn = document.createElement('button');
+            btn.textContent = 'Eliminar';
+            btn.className = 'secondary-btn';
+            btn.onclick = () => eliminarUsuario(user.username);
+            cellDelete.appendChild(btn);
+            row.appendChild(cellDelete);
+  
+            body.appendChild(row);
+          });
+        });
+    }
+  
+    function eliminarUsuario(username) {
+      if (confirm(`¿Estás seguro de eliminar al usuario "${username}"?`)) {
+        fetch('/delete-user', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            alert('Usuario eliminado');
+            cargarUsuarios(); // recargar la tabla
+          } else {
+            alert(data.message || 'Error al eliminar usuario');
+          }
+        });
+      }
+    }
+  
+    // Cargar usuarios al iniciar
+    cargarUsuarios();
+  </script>
+  
+</body>
+</html>
