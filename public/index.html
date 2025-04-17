@@ -2,67 +2,227 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Inicio - Plataforma Educativa</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio - Plataforma Educativa</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: #0cfae6;
+      color: black;
+      border: none;
+      border-radius: 50%;
+      padding: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .chat-window {
+      position: fixed;
+      bottom: 80px;
+      left: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: #1e2137;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .chat-header {
+      background-color: #0cfae6;
+      color: black;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      color: white;
+      font-size: 14px;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #444;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      background-color: #2c2f48;
+      color: white;
+    }
+
+    .chat-input button {
+      padding: 10px 15px;
+      border: none;
+      background-color: #0cfae6;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="sidebar">
-        <div class="logo">PLATAFORMA EDUCATIVA</div>
-        <ul class="menu">
-            <li><i class="fas fa-home"></i> Inicio</li>
-            <li><a href="./materias.html"><i class="fa-solid fa-book"></i> Materias</a></li>
-            <li><i class="fas fa-comments"></i> Chat</li>
-            <li><i class="fa-solid fa-clipboard"></i> Mis Notas</li>
-            <li><i class="fas fa-graduation-cap"></i> Pensum de Materias</li>
-            <li><i class="fa-solid fa-money-check-dollar"></i>Mensualidades</li>
-            <li><i class="fas fa-bell"></i> Notificaciones</li>
-        </ul>
-        <!-- <button class="refer-btn"><i class="fas fa-bullhorn"></i> algo</button> -->
+  <div class="sidebar">
+    <div class="logo">PLATAFORMA EDUCATIVA</div>
+    <ul class="menu">
+      <li><i class="fas fa-home"></i> Inicio</li>
+      <li><a href="./materias.html"><i class="fa-solid fa-book"></i> Materias</a></li>
+      <li><i class="fas fa-comments"></i> Chat</li>
+      <li><i class="fa-solid fa-clipboard"></i> Mis Notas</li>
+      <li><i class="fas fa-graduation-cap"></i> Pensum de Materias</li>
+      <li><i class="fa-solid fa-money-check-dollar"></i>Mensualidades</li>
+      <li><i class="fas fa-bell"></i> Notificaciones</li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="curso-info">
+        <p>Bienvenido</p>
+        <h2>Rodrigo Rojas</h2>
+      </div>
+      <div class="user-tools">
+        <div class="user-icon">R</div>
+      </div>
     </div>
 
-    <div class="main-content">
-        <div class="topbar">
-            <div class="curso-info">
-                <p>Bienvenido</p>
-                <h2>Rodrigo Rojas</h2>
-            </div>
-            <div class="user-tools">
-                <!-- <button class="premium-btn"><i class="fas fa-gem"></i> Premium</button>
-                <span><i class="fas fa-trophy"></i> Top 10%</span>
-                <span><i class="fas fa-comment-dots"></i> Chat</span> -->
-                <div class="user-icon">R</div>
-            </div>
-        </div>
-
-        <div class="home-hero">
-            <h1>CARRERA DE INGENIERÍA DE SISTEMAS</h1>
-            <p>Explora tus materias, accede a nuevos desafíos y mejora tus habilidades.</p>
-            <div class="hero-buttons">
-                <button class="main-btn"><i class="fas fa-book"></i> Mis Materias</button>
-                <button class="secondary-btn"><i class="fas fa-rocket"></i> Explorar Nuevos</button>
-            </div>
-        </div>
-
-        <div class="home-features">
-            <div class="feature-card">
-                <h3><i class="fas fa-fire"></i> Nuevos desafíos</h3>
-                <p>Participa en desafíos semanales para mejorar tus habilidades.</p>
-            </div>
-            <div class="feature-card">
-                <h3><i class="fas fa-certificate"></i> Certificaciones</h3>
-                <p>Obtén certificados oficiales para impulsar tu carrera profesional.</p>
-            </div>
-            <div class="feature-card">
-                <h3><i class="fas fa-users"></i> Comunidad</h3>
-                <p>Conecta con otros estudiantes y comparte tu progreso.</p>
-            </div>
-        </div>
+    <div class="home-hero">
+      <h1>CARRERA DE INGENIERÍA DE SISTEMAS</h1>
+      <p>Explora tus materias, accede a nuevos desafíos y mejora tus habilidades.</p>
+      <div class="hero-buttons">
+        <button class="main-btn"><i class="fas fa-book"></i> Mis Materias</button>
+        <button class="secondary-btn"><i class="fas fa-rocket"></i> Explorar Nuevos</button>
+      </div>
     </div>
+
+    <div class="home-features">
+      <div class="feature-card">
+        <h3><i class="fas fa-fire"></i> Nuevos desafíos</h3>
+        <p>Participa en desafíos semanales para mejorar tus habilidades.</p>
+      </div>
+      <div class="feature-card">
+        <h3><i class="fas fa-certificate"></i> Certificaciones</h3>
+        <p>Obtén certificados oficiales para impulsar tu carrera profesional.</p>
+      </div>
+      <div class="feature-card">
+        <h3><i class="fas fa-users"></i> Comunidad</h3>
+        <p>Conecta con otros estudiantes y comparte tu progreso.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botón de chat flotante -->
+  <button class="chat-button" onclick="toggleChat()">
+    <i class="fas fa-comment-alt"></i>
+  </button>
+
+  <!-- Ventana de chat -->
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">Asistente</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
+      <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+  </div>
+
+  <script>
+       // Configuración de la API (¡OJO! Protege tu API Key en producción)
+       const DEEPINFRA_API_KEY = "ZzSoThPHLYkczyxLWsWPZv7ak9yoOrWk"; // Cambia por tu clave real
+    const MODEL = "meta-llama/Llama-2-70b-chat-hf"; // Modelo recomendado para educación
+
+    function toggleChat() {
+      const chat = document.getElementById('chatWindow');
+      chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    async function enviarMensaje() {
+      const input = document.getElementById('chatInput');
+      const mensaje = input.value.trim();
+      if (!mensaje) return;
+
+      // Mostrar mensaje del usuario
+      agregarMensaje('Tú', mensaje, 'user-message');
+      input.value = '';
+      
+      // Mostrar estado "escribiendo"
+      const typingId = agregarMensaje('Asistente', 'Escribiendo...', 'bot-message', true);
+
+      try {
+        const response = await fetch('https://api.deepinfra.com/v1/openai/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${DEEPINFRA_API_KEY}`
+          },
+          body: JSON.stringify({
+            model: MODEL,
+            messages: [
+              { 
+                role: 'system', 
+                content: 'Eres un tutor educativo especializado en explicar conceptos complejos de manera sencilla. Usa ejemplos prácticos.' 
+              },
+              { role: 'user', content: mensaje }
+            ],
+            temperature: 0.7,  // Controla la creatividad (0-1)
+            max_tokens: 500    // Límite de longitud de respuesta
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const respuesta = data.choices?.[0]?.message?.content || 'No entendí tu pregunta. ¿Podrías reformularla?';
+        
+        // Reemplazar "Escribiendo..." con la respuesta real
+        actualizarMensaje(typingId, respuesta);
+
+      } catch (error) {
+        console.error('Error API:', error);
+        actualizarMensaje(typingId, '⚠️ Error al conectar con el asistente. Intenta nuevamente.');
+      }
+    }
+
+    function agregarMensaje(remitente, mensaje, tipo, esTemporal = false) {
+      const contenedor = document.getElementById('chatMessages');
+      const msg = document.createElement('div');
+      msg.className = `message ${tipo}`;
+      msg.innerHTML = `
+        <strong>${remitente}:</strong> 
+        <span>${mensaje}</span>
+      `;
+      contenedor.appendChild(msg);
+      contenedor.scrollTop = contenedor.scrollHeight;
+      
+      return esTemporal ? msg.id = `msg-${Date.now()}` : null;
+    }
+
+    function actualizarMensaje(id, nuevoTexto) {
+      const mensaje = document.getElementById(id);
+      if (mensaje) {
+        mensaje.querySelector('span').textContent = nuevoTexto;
+      }
+    }
+  </script>
 </body>
-
 
 </html>
